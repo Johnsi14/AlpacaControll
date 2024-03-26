@@ -10,15 +10,15 @@ No Working Code yet but this is how the TUI should look like.
 
 ## Functions
 
-1. [] Tui Displays
-2. [] Initial Setup
-3. [] Setup Environment from Existing Repo
-4. [] Status Part
-5. [] Todo Part
-6. [] Progress Part
-7. [] Help/Keybinds Part
-8. [] Information Part
-9. [] Package Creation
-10. [] Autobuild Packages
+1. [ ] Tui Displays
+2. [ ] Initial Setup
+3. [ ] Setup Environment from Existing Repo
+4. [ ] Status Part
+5. [ ] Todo Part
+6. [ ] Progress Part
+7. [ ] Help/Keybinds Part
+8. [ ] Information Part
+9. [ ] Package Creation
+10. [ ] Autobuild Packages
 
 ## I am getting close to the Last year of my apprenticeship as an Electrician so I don't Have much Time yet to build it.
