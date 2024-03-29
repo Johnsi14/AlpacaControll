@@ -29,14 +29,6 @@ pub fn install_hooks() -> color_eyre::Result<()> {
     Ok(())
 }
 
-pub fn install_panic() {
-    //Sets Up the Human Panic Crate for Release Versions
-    human_panic::setup_panic!();
-
-    //Sets up better Panic for Debug Versions
-    better_panic::install();
-}
-
 pub fn install_log() {
     tracing_subscriber::fmt::init();
     info!("Logger Initialized");

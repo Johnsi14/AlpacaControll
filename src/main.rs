@@ -10,6 +10,7 @@ use ratatui::{
     symbols::border,
     widgets::{block::*, *},
 };
+use tracing::info;
 
 mod errors;
 mod tui;
@@ -107,8 +108,14 @@ impl Widget for &App {
 
 fn main() -> Result<()> {
     errors::install_hooks()?;
-    errors::install_panic();
     errors::install_log();
+
+    //Start the Human Error Handler only in Release Mode
+    if !cfg!(debug_assertions) {
+        human_panic::setup_panic!();
+        info!("Human Panic Handler Initialized");
+    }
+
     let mut terminal = tui::init()?;
     App::default().run(&mut terminal)?;
     tui::restore()?;
