@@ -1,4 +1,4 @@
-use std::io;
+//use std::io;
 
 use color_eyre::{
     eyre::{bail, WrapErr},
@@ -107,6 +107,8 @@ impl Widget for &App {
 
 fn main() -> Result<()> {
     errors::install_hooks()?;
+    errors::install_panic();
+    errors::install_log();
     let mut terminal = tui::init()?;
     App::default().run(&mut terminal)?;
     tui::restore()?;
