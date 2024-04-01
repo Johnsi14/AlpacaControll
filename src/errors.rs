@@ -1,7 +1,6 @@
 use std::panic;
 
 use color_eyre::{config::HookBuilder, eyre};
-use tracing::info;
 
 use crate::tui;
 
@@ -27,9 +26,4 @@ pub fn install_hooks() -> color_eyre::Result<()> {
     ))?;
 
     Ok(())
-}
-
-pub fn install_log() {
-    tracing_subscriber::fmt::init();
-    info!("Logger Initialized");
 }

@@ -1,26 +1,42 @@
 //use std::io;
 
+use clap::Parser;
 use color_eyre::{
-    eyre::{bail, WrapErr},
+    //eyre::{bail, WrapErr},
     Result,
 };
-use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind};
-use ratatui::{
+use std::path::PathBuf;
+//use crossterm::event::{self, Event, KeyCode, KeyEvent, KeyEventKind};
+/*use ratatui::{
     prelude::*,
     symbols::border,
     widgets::{block::*, *},
-};
+};*/
 use tracing::info;
 
 mod errors;
 mod tui;
 
-#[derive(Debug, Default)]
+#[derive(Parser, Debug)]
+#[command(version)]
+#[command(next_line_help = true)]
+#[command(about = "Easy Programm to Build Packages in an Own Pacman compatible Repository", long_about = None)]
+struct Cargs {
+    /// File Path for Project Config
+    #[arg(short, long, value_name = "FILE")]
+    path: Option<PathBuf>,
+    /// File Path for Global Config
+    #[arg(short, long, value_name = "FILE")]
+    config_path: Option<PathBuf>,
+}
+
+/*#[derive(Debug, Default)]
 pub struct App {
     counter: u8,
     exit: bool,
 }
-
+*/
+/*
 impl App {
     /// runs the application's main loop until the user quits
     pub fn run(&mut self, terminal: &mut tui::Tui) -> Result<()> {
@@ -72,7 +88,8 @@ impl App {
         Ok(())
     }
 }
-
+*/
+/*
 impl Widget for &App {
     fn render(self, area: Rect, buf: &mut Buffer) {
         let title = Title::from(" Counter App Tutorial ".bold());
@@ -105,10 +122,13 @@ impl Widget for &App {
             .render(area, buf);
     }
 }
-
+*/
 fn main() -> Result<()> {
     errors::install_hooks()?;
-    errors::install_log();
+    tracing_subscriber::fmt::init();
+    let command_args = Cargs::parse();
+    info!("Logger Initialized");
+    info!("Parsed Command Line Arguments {:?}", command_args);
 
     //Start the Human Error Handler only in Release Mode
     if !cfg!(debug_assertions) {
@@ -116,8 +136,8 @@ fn main() -> Result<()> {
         info!("Human Panic Handler Initialized");
     }
 
-    let mut terminal = tui::init()?;
-    App::default().run(&mut terminal)?;
+    let mut _terminal = tui::init()?;
+    //App::default().run(&mut terminal)?;
     tui::restore()?;
     Ok(())
 }

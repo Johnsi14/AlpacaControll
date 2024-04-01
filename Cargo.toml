@@ -7,6 +7,7 @@ edition = "2021"
 
 [dependencies]
 better-panic = "0.3.0"
+clap = { version = "4.5.4", features = ["unstable-doc"] }
 color-eyre = "0.6.3"
 crossterm = "0.27.0"
 human-panic = "1.2.3"
